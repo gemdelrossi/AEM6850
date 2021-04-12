@@ -1,0 +1,224 @@
+---
+title: 'Lecture 4: Efficient coding practices'
+author: "Prof. Ariel Ortiz-Bobea"
+date: "AEM 6850"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Plan for today
+
+1.  Motivation
+2.  My philosophy
+3.  Example from a recent study
+4.  Organizing projects/scripts/code
+5.  Guiding principles
+6.  Getting started with your homework
+
+# Disclaimers
+
+-   I'm not a computer scientist
+-   The ideas here reflect my experience and that of others
+-   Although our workshop is in R, many of these ideas apply to other languages
+
+# Motivation
+
+Good code...
+
+-   Increases confidence in your work
+-   Increases the chances other researchers will reproduce, replicate and cite your work
+-   Saves you (and others) time
+-   Reduces the chances of making mistakes
+-   Is easy to understand
+-   May be portable
+
+# Coding philosophy
+
+You are writing code for OTHERS (that includes yourself in $t+1$)
+
+# Organizing a project
+
+-   A project comes with general instructions
+
+    -   It could be a readme.txt file
+    -   It should specify the authors, what the project is about and describe files
+
+-   Folders for different types of files
+
+    -   Don't mix raw data with "cleaned" data
+
+-   No single best way of organization but this is a good start:
+
+    -   Folder for code (no subfolders)
+
+    -   Folder(s) for input(s)
+
+        -   A folder for raw data (which you never modify)
+        -   A folder for cleaned/modified data (which you create in the script files)
+
+    -   Folder(s) for output(s)
+
+        -   A folder for images / tables / etc.
+
+    -   Folder for packages (optional)
+
+# Example of folder structure
+
+-   code (all script files including RStudio project)
+
+-   data
+
+    -   raw (data as downloaded from web, can be large)
+    -   clean (data needed for analysis)
+
+-   output (that show up in the paper only)
+
+    -   figures
+    -   tables
+
+-   paper
+
+-   presentations
+
+-   Others: meeting notes, documentation, etc.
+
+# Organizing your script files
+
+-   A script file should accomplish a specific and well-identified task in a project
+
+    -   Example of tasks: cleaning data, regression analysis, etc.
+
+-   Never have all your code in a single script file (unless it is a tiny project. e.g. your homework)
+
+-   Script files should have intuitive names and follow a work flow:
+
+    -   1.1_clean_economic_data.R
+    -   1.2_clean_pollution_data.R
+    -   1.3_prepare_regression_data.R
+    -   2.1_regression_analysis.R
+    -   2.2_post_estimation_analysis.R
+
+# Good practice to create special script files
+
+-   A master script file (e.g. master.R) that runs all project scripts file in the correct order
+
+    -   Installs/loads all necessary packages
+    -   Simplify life for reproducers
+    -   Typically created at the very end of the project
+
+-   A file containing user-defined functions (e.g. functions.R)
+
+    -   improves automation if used in several scripts
+    -   invites you to create more portable functions for future projects
+
+
+# Code within a script file
+
+-   A script file should have a clear structure with sections
+
+-   Include a title and description of what the script file does
+
+-   There should be a "preliminary section" where you set things up
+
+    -   Import data
+    -   Load necessary packages
+    -   Specify any settings or parameters for the analysis
+    -   Maybe define functions that are only used in this script file, etc.
+
+-   This section is followed by one or more sections where tasks are performed
+
+    -   No "preliminary" stuff here (e.g. importing data)
+
+
+# Guiding Principles 1/2
+
+-   Think constantly about reproducibility
+
+    -   Your script files should run entirely without errors (start with your computer!)
+    -   Rely on relative paths (no hard coding)
+    -   RStudio projects help, use them!
+    -   You may create a "package" folder to ensure compatibility across versions/platforms. Various options here.
+
+-   Don't Repeat Yourself (DRY)
+
+    -   Do not copy-paste pieces of code within the same script file (Solution: create a function and use loops)
+
+    -   Do not copy-paste pieces of code across script files (Solution: create a script file containing functions, and load when necessary)
+
+    -   Copy-pasting code is a red flag
+
+-   Give objects and folders simple and intuitive names
+
+    -   Good names are short and informative
+    -   Limit use of upper case and weird characters (MyModified.GDP.var or log_gdp?)
+
+
+# Guiding Principles 2/2
+
+-   Annotate your code concisely but generously
+
+    -   Better to err on the side of too many annotations
+    -   Should help understand the purpose of any significant piece of your code
+    -   Annotate single lines when code is relatively complex
+
+-   Make your code look good (i.e. easy to read)!
+
+    - Keep consistent indentation and spacing
+    - Exploit RStudio capabilities to "fold" your code
+    - Avoid deep nesting when possible
+    - Let your code "breathe" (leave some blank spaces!)
+    - Favor several lines with short expressions than a long line with multiple expressions
+    
+
+    
+# General tips on the process of writing code
+
+-   Before starting, you should first *visualize* the work flow...
+
+    -   *"If you don't know where you're going, any road'll take you there"* (based on *Alice in Wonderland*, Lewis Carroll)
+    -   Have a clear idea of repetitive tasks
+    -   Think how you want your project and code to be structured when done
+
+-   ... then start writing your code interactively
+
+    -   Writing and running code in the console and script file editor
+    -   But do not lose sight of the forest for the trees
+
+-   Do not run a "big" task without testing on a small test dataset
+
+-   Constantly re-check your code runs *entirely* (not just little pieces)
+
+-   Leave "breadcrumbs" for easier debugging
+
+```{r}
+lapply(1:3, function(x1) {
+  lapply(c("a","b"), function(x2) {
+    print(paste(x1,"-",x2))
+    # Meat of the code here
+  })
+})
+```
+
+
+# Getting started with your homework
+
+1.  Read instructions in Canvas
+
+2.  Create a project folder and subfolders
+
+    -   ../hw1
+    -   ../hw1/data
+
+3.  Download data and place it in the data folder
+
+4.  Create an RStudio project
+
+5.  Create a new script file
+
+6.  Visualize work flow and create sections
+
+7.  Start coding (following guiding principles)!
+

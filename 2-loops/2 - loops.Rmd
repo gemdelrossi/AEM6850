@@ -1,0 +1,40 @@
+---
+title: 'Lecture 2: Loops, vectorizaton and parallel computing'
+author: "Prof. Ariel Ortiz-Bobea"
+date: "AEM 6850"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Plan for today
+
+1. For loops and *apply functions
+3. Parallelization
+4. Using lists effectively
+
+---
+
+# For loops and apply
+
+* R various ways of repeating the same task multiple times
+  - for: looping over an index
+  - apply: looping over rows or columns of a matrix
+  - lapply/sapply/mapply: looping over lists
+  
+  
+---
+
+# Parralell computing
+
+* You can parallelize code in R
+  - Similar syntax as lapply
+  - parallel package
+  - mclapply() does not work on Windows
+  - parLapply() is another version
+  
+----
+
+
